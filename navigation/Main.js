@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from '../screens/Home';
+import Contacts from '../screens/Contacts';
 import CurrentTimeTemperature from '../screens/CurrentTimeTemperature';
 import BackgroundImageChanger from '../screens/BackgroundImageChanger';
 import FavouriteVideo from '../screens/FavouriteVideo';
@@ -20,6 +21,10 @@ const Main = () => {
           name="Home"
           component={Home}
         />
+        <Stack.Screen
+          name="Contacts"
+          component={Contacts}
+        /> 
         <Stack.Screen
           name="CurrentTimeTemperature"
           component={CurrentTimeTemperature}

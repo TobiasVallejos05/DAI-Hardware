@@ -16,11 +16,16 @@ const Home = ({navigation}) => {
         />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Configuración de número de emergencia</Text>
+        
+        <TouchableOpacity onPress = {() => {
+        navigation.navigate('Contacts')}}>
         <Image
         style={styles.logo}
         source={{ uri: "https://lastfm.freetls.fastly.net/i/u/ar0/2bf2a1d2dbeb48f6c827e8a3d8601044.jpg" }}
         />
+        </TouchableOpacity>
         <Text style={styles.featureTitle}>Contactos</Text>
+
         <Image
         style={styles.logo}
         source={{ uri: "https://lastfm.freetls.fastly.net/i/u/ar0/2bf2a1d2dbeb48f6c827e8a3d8601044.jpg" }}
