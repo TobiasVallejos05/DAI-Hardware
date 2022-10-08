@@ -4,31 +4,91 @@ import { useContextState } from '../contextState'
 
 const CurrentTimeTemperature = ({navigation}) => {
 
-  let date = new Date();
+  let datetime = new Date();
 
-  let minutes = date.getMinutes();
-  let hour = date.getHours();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
+  let minutes = datetime.getMinutes();
+  let hour = datetime.getHours();
+  let weekDay = datetime.getDay();
+  let day = datetime.getDate();
+  let month = datetime.getMonth() + 1;
+  let year = datetime.getFullYear();
+
+  let dayName = "";
+  if(weekDay == 1){
+    dayName = "Lunes";
+  }
+  if(weekDay == 2){
+    dayName = "Martes";
+  }
+  if(weekDay == 3){
+     dayName = "Miércoles";
+  }
+  if(weekDay == 4){
+    dayName = "Jueves";
+  }
+  if(weekDay == 5){
+    dayName = "Viernes";
+  }
+  if(weekDay == 6){
+     dayName = "Sábado";
+  }
+  if(weekDay == 7){
+    dayName = "Domingo";
+  }
+
+  let monthName = "";
+  if(month == 1){
+    monthName = "enero";
+  }
+  if(month == 2){
+    monthName = "febrero";
+  }
+  if(month == 3){
+    monthName = "marzo";
+  }
+  if(month == 4){
+    monthName = "abril";
+  }
+  if(month == 5){
+    monthName = "mayo";
+  }
+  if(month == 6){
+    monthName = "junio";
+  }
+  if(month == 7){
+    monthName = "julio";
+  }
+  if(month == 8){
+    monthName = "agosto";
+  }
+  if(month == 9){
+    monthName = "septiembre";
+  }
+  if(month == 10){
+    monthName = "octubre";
+  }
+  if(month == 11){
+    monthName = "noviembre";
+  }
+  if(month == 12){
+    monthName = "diciembre";
+  } 
 
   minutes = ('0' + minutes).slice(-2);
   hour = ('0' + hour).slice(-2);
-  day = ('0' + day).slice(-2);
-  month = ('0' + month).slice(-2);
 
   let time = `${hour}:${minutes}`;
-  let date2 = `${day}/${month}/${year}`;
+  let date = `${dayName}, ${day} de ${monthName} de ${year}`;
   console.log(time);
-  console.log(date2);
-
+  console.log(date);
+ 
   return (
 
     <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Hora Actual/Temperatura</Text>
         <View>
           <Text style={styles.body}>{ time }</Text>
-          <Text style={styles.body}>{ date2 }</Text>
+          <Text style={styles.body}>{ date }</Text>
         </View>
     </SafeAreaView> 
   ); 
