@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button, Video } from 'react-native';
 import { useContextState } from '../contextState'
 
-const FavouriteVideo = ({navigation}) => {
+const EmergencyCall = ({navigation}) => {
 
     const volverAtras = () => {
         navigation.push('Home')
@@ -11,7 +11,7 @@ const FavouriteVideo = ({navigation}) => {
   return (
 
     <View style={styles.container}>
-        <Text style={styles.title}>Video Favorito</Text>
+        <Text style={styles.title}>Llamada de emergencia</Text>
         <Button style={styles.button} title="Go back" color="red" onPress = {volverAtras}></Button>
     </View> 
   ); 
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FavouriteVideo
+export default EmergencyCall
