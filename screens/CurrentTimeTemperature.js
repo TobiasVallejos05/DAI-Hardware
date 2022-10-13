@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
 import { useContextState } from '../contextState'
+import Weather from '../components/Weather';
 
 const CurrentTimeTemperature = ({navigation}) => {
 
@@ -89,6 +90,7 @@ const CurrentTimeTemperature = ({navigation}) => {
         <View>
           <Text style={styles.body}>{ time }</Text>
           <Text style={styles.body}>{ date }</Text>
+          <Weather weather={weatherCondition} temperature={temperature} />
         </View>
     </SafeAreaView> 
   ); 
