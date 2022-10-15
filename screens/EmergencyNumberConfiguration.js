@@ -4,15 +4,10 @@ import { useContextState } from '../contextState'
 
 const EmergencyNumberConfiguration = ({navigation}) => {
 
-    const volverAtras = () => {
-        navigation.push('Home')
-      }
-
   return (
 
     <View style={styles.container}>
         <Text style={styles.title}>Configuración de número de emergencia</Text>
-        <Button style={styles.button} title="Go back" color="red" onPress = {volverAtras}></Button>
     </View> 
   ); 
 }
@@ -24,14 +19,10 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     title: {
-        fontSize: 40,
-        fontWeight: 500,
-        marginTop: 20
+        fontSize: 20,
+        fontWeight: "500",
+        marginTop: 50
     },
-    button: {
-        color: "black",
-        title: "Go back"
-    }
 });
 
 export default EmergencyNumberConfiguration

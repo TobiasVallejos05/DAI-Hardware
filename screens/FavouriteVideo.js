@@ -4,15 +4,11 @@ import { useContextState } from '../contextState'
 
 const FavouriteVideo = ({navigation}) => {
 
-    const volverAtras = () => {
-        navigation.push('Home')
-      }
 
   return (
 
     <View style={styles.container}>
         <Text style={styles.title}>Video Favorito</Text>
-        <Button style={styles.button} title="Go back" color="red" onPress = {volverAtras}></Button>
     </View> 
   ); 
 }
@@ -25,13 +21,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: 500,
+        fontWeight: "500",
         marginTop: 20
     },
-    button: {
-        color: "black",
-        title: "Go back"
-    }
 });
 
 export default FavouriteVideo

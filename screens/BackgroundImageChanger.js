@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     title: {
-        fontSize: 40,
-        fontWeight: 500,
+        fontSize: 20,
+        fontWeight: "500",
         marginTop: 20
     },
     buttonsPosition: {
-        flexDirection: "row",
+        flexDirection: "column",
         marginTop: 20,
         marginBottom: 20,
     },

@@ -48,10 +48,10 @@ const Identifier = ({navigation}) => {
         <Text style={styles.title}>Acceso permitido</Text>
         <BarCodeScanner 
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          style={{ height: 200, width: 200 }} />
-        <Text>{text}</Text>
+          style={{ height: 350, width: 350, marginTop:20 }} />
+        <Text style={{fontSize:20, marginTop:10}}>{text}</Text>
 
-        {scanned && <Button title={'¿Desea volver a escanear?'} onPress={() => setScanned(false)} /> }
+        {scanned && <Button title={'Volver a escanear'} style={{fontSize:20, marginTop:10}}  onPress={() => setScanned(false)} /> }
     </View>
   ); 
 }
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        fontWeight: 400,
+        fontWeight: "400",
         marginTop: 20
     },
 });

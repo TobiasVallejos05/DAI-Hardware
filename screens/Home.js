@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
+import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button, ScrollView } from 'react-native';
 import { useContextState } from '../contextState'
 
 const Home = ({navigation}) => {
 
   return (
 
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Hello World!</Text>
-        <TouchableOpacity onPress = {() => {
-        navigation.navigate('EmergencyNumberConfiguration')}}>
-        <Image
-        style={styles.logo}
-        source={{ uri: "https://images.vexels.com/media/users/3/208199/isolated/preview/6eb5ef1c35080a1a35508c20b1ddee32-icono-de-llamada-de-telefono-de-emergencia.png" }}
-        />
-        </TouchableOpacity>
-        <Text style={styles.featureTitle}>Configuración de número de emergencia</Text>
+    <ScrollView>
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.title}>DAI-Hardware</Text>
+            <TouchableOpacity onPress = {() => {
+                navigation.navigate('EmergencyNumberConfiguration')}}>
+                <Image
+                style={styles.logo}
+                source={{ uri: "https://images.vexels.com/media/users/3/208199/isolated/preview/6eb5ef1c35080a1a35508c20b1ddee32-icono-de-llamada-de-telefono-de-emergencia.png" }}
+                />
+            </TouchableOpacity>
+            <Text style={styles.featureTitle}>Configuración de número de emergencia</Text>
         
-        <TouchableOpacity onPress = {() => {
-        navigation.navigate('Contacts')}}>
-        <Image
-        style={styles.logo}
-        source={{ uri: "https://cdn-icons-png.flaticon.com/512/1915/1915648.png" }}
-        />
-        </TouchableOpacity>
-        <Text style={styles.featureTitle}>Contactos</Text>
+            <TouchableOpacity onPress = {() => {
+            navigation.navigate('Contacts')}}>
+                <Image
+                style={styles.logo}
+                source={{ uri: "https://cdn-icons-png.flaticon.com/512/1915/1915648.png" }}
+                />
+            </TouchableOpacity>
+            <Text style={styles.featureTitle}>Contactos</Text>
 
         <Image
         style={styles.logo}
@@ -40,16 +41,6 @@ const Home = ({navigation}) => {
         />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Hora actual/Temperatura</Text>
-    
-        
-        <TouchableOpacity onPress = {() => { 
-        navigation.navigate('EmergencyCall')}}>
-        <Image
-        style={styles.logo}
-        source={{ uri: "https://images.vexels.com/media/users/3/208199/isolated/preview/6eb5ef1c35080a1a35508c20b1ddee32-icono-de-llamada-de-telefono-de-emergencia.png" }}
-        />
-        </TouchableOpacity>
-        <Text style={styles.featureTitle}>Llamado de emergencia</Text>
         
         <TouchableOpacity onPress = {() => {
         navigation.navigate('BackgroundImageChanger')}}>
@@ -77,8 +68,9 @@ const Home = ({navigation}) => {
         />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Identificación de cada aplicación</Text>
-               
-    </SafeAreaView> 
+        
+    </SafeAreaView>
+    </ScrollView> 
   ); 
 }
 
@@ -90,7 +82,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: 500,
+        fontWeight: "500",
         marginTop: 20,
     },
     logo: {
@@ -100,7 +92,7 @@ const styles = StyleSheet.create({
     },
     featureTitle: {
         fontSize: 20,
-        fontWeight: 300,
+        fontWeight: "300",
         marginTop: 10,
         marginBottom: 10
     },

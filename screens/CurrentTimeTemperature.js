@@ -87,10 +87,10 @@ const CurrentTimeTemperature = ({navigation}) => {
 
     <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Hora Actual/Temperatura</Text>
-        <View>
+        <View style={styles.container}>
           <Text style={styles.body}>{ time }</Text>
           <Text style={styles.body}>{ date }</Text>
-          <Weather weather={weatherCondition} temperature={temperature} />
+          <Weather />
         </View>
     </SafeAreaView> 
   ); 
@@ -104,12 +104,12 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: 500,
+        fontWeight: "500",
         marginTop: 20
     },
     body: {
-        fontSize: 30,
-        fontWeight: 300,
+        fontSize: 20,
+        fontWeight: "300",
         marginVertical: 10,
     }
 });

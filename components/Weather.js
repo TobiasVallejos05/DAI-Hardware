@@ -1,128 +1,159 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import PropTypes from 'prop-types';
-import { weatherConditions } from '../utils/WeatherConditions';
+import { View, Text, Alert, SafeAreaView, ActivityIndicator, ScrollView, RefreshControl, Image, StyleSheet, Dimensions } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import * as Location from 'expo-location'
 
-const Weather = ({ weather, temperature }) => {
-  return (
-    <View
-      style={[
-        styles.weatherContainer,
-        { backgroundColor: weatherConditions[weather].color }
-      ]}
-    >
-      <View style={styles.headerContainer}>
-        <MaterialCommunityIcons
-          size={72}
-          name={weatherConditions[weather].icon}
-          color={'#fff'}
-        />
-        <Text style={styles.tempText}>{temperature}˚</Text>
-      </View>
-      <View style={styles.bodyContainer}>
-        <Text style={styles.title}>{weatherConditions[weather].title}</Text>
-        <Text style={styles.subtitle}>
-          {weatherConditions[weather].subtitle}
-        </Text>
-      </View>
-    </View>
-  );
-};
+const API_KEY = 'a1d744d9c71573bb9a7db5949ee8e32c';
+let url = `http://api.openweathermap.org/data/2.5/onecall?units=metric&exclude=minutely&appid=${API_KEY}`;
 
-Weather.propTypes = {
-  temperature: PropTypes.number.isRequired,
-  weather: PropTypes.string
-};
+const Weather = () => {
+  const [forecast, setForecast] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
-const styles = StyleSheet.create({
-  weatherContainer: {
-    flex: 1
-  },
-  headerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around'
-  },
-  tempText: {
-    fontSize: 72,
-    color: '#fff'
-  },
-  bodyContainer: {
-    flex: 2,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    paddingLeft: 25,
-    marginBottom: 40
-  },
-  title: {
-    fontSize: 60,
-    color: '#fff'
-  },
-  subtitle: {
-    fontSize: 24,
-    color: '#fff'
-  }
-});
+  const loadForecast = async () => {
+    setRefreshing(true);
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Acceso denegado a la ubicación");
+    }
 
-export default Weather;
+    let location = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
 
-/*
+    const response = await fetch(`${url}&lat=${location.coords.latitude}&lon${location.coords.longitude}`);
+    const data = await response.json();
 
-import React from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
-
-import { API_KEY } from './utils/WeatherAPIKey';
-
-import Weather from './components/Weather';
-
-export default class App extends React.Component {
-  state = {
-    isLoading: false,
-    temperature: 0,
-    weatherCondition: null,
-    error: null
-  };
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.fetchWeather(position.coords.latitude, position.coords.longitude);
-      },
-      error => {
-        this.setState({
-          error: 'Error Gettig Weather Condtions'
-        });
-      }
-    );
+    if(!response.ok){
+      Alert.alert("Error, algo salió mal");
+    } else {
+      setForecast(data);
+    }
+    setRefreshing(false);
   }
 
-  fetchWeather(lat = 25, lon = 25) {
-    fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}&units=metric`
-    )
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-      });
-  }
+  useEffect(() => {
+    loadForecast();
+  },[]);
 
-  render() {
-    const { isLoading } = this.state;
+ if(!forecast){
     return (
-      <View style={styles.container}>
-        {isLoading ? <Text>Fetching The Weather</Text> : <Weather />}
-      </View>
+      <SafeAreaView style={styles.loading}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
     );
-  }
+  } 
+
+  const current = forecast.current.weather[0];
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+          refreshing={refreshing}
+          onRefresh={() => loadForecast()} />
+        }
+        style={{marginTop:50}} >
+        <Text style={styles.title}>
+          Current Weather
+        </Text>
+        <Text style={{alignItems:"center", textAlign:"center"}}>
+          Your Location
+        </Text>
+        <View style={styles.current}>
+          <Image
+            style={styles.largeIcon}
+            source={{
+              uri: `http://openweathermap.org/img/wn/${current.icon}@4x.png`
+            }} />
+            <Text style={styles.currentTemp}>
+              {Math.round(forecast.current.temp)}°C
+            </Text>
+        </View>
+
+        <Text style={styles.currentDescription}>
+          {current.description}
+        </Text>
+
+        <View style={styles.extraInfo}>
+          <View style={styles.info}>
+            <Image
+              // source={require("../assets/temp.png")}
+              // style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+            />
+            <Text style={styles.text}>
+              {forecast.current.feels_like}°C 
+            </Text>
+            <Text style={styles.text}>
+              Feels Like
+            </Text>
+          </View>
+          <View style={styles.info}>
+            <Image
+              // source={require("../assets/humidity.png")}
+              // style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+            />
+            <Text style={styles.text}>
+              {forecast.current.humidity}% 
+            </Text>
+            <Text style={styles.text}>
+              Humidity
+            </Text>
+          </View>
+        </View>
+        </ScrollView>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  }
+      flex: 1,
+      backgroundColor: "lightgray"
+  },
+  title: {
+      fontSize: 36,
+      fontWeight: 'bold',
+      textAlign:"center",
+      color:"black"
+  },
+  current: {
+    flexDirection:"row",
+    alignItems:"center",
+    alignContent:"center",
+  },
+  largeIcon:{
+    width:300,
+    height:250,
+  },
+  currentTemp:{
+    fontSize:32,
+    fontWeight:"bold",
+    textAlign:"center",
+  },
+  currentDescription: {
+    width: "100%",
+    textAlign: "center",
+    fontWeight:"200",
+    fontSize:24,
+    marginBottom:5
+  },
+  info:{
+    width: Dimensions.get('screen').width/2.5,
+    backgroundColor:'white',
+    padding: 10,
+    borderRadius:15,
+    justifyContent:"center"
+  },
+  extraInfo:{
+    flexDirection:"row",
+    marginTop:20,
+    justifyContent:"space-between",
+    padding:10
+  },
+  text:{
+    fontSize:20,
+    color:"black",
+    textAlign:"center"
+  },
 });
 
-*/
+export default Weather

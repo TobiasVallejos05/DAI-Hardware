@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
+import EmergencyCall from '../components/EmergencyCall';
 import { useContextState } from '../contextState'
 
 const Contacts = ({navigation}) => {
@@ -24,6 +25,13 @@ const Contacts = ({navigation}) => {
             <Text>{contextState.contacts.phoneNumber} </Text>
     </View> 
   ); */
+
+  return (
+    <View>
+        <EmergencyCall />
+    </View>
+
+  )
 }
 
 const styles = StyleSheet.create({
