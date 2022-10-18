@@ -5,7 +5,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 
 const Identifier = ({navigation}) => {
   
-  const [permission, setPermission] = useState(null);
+  const [permission, setPermission] = useState(true);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Todavía no hay nada escaneado');
 
@@ -48,7 +48,7 @@ const Identifier = ({navigation}) => {
         <Text style={styles.title}>Acceso permitido</Text>
         <BarCodeScanner 
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          style={{ height: 350, width: 350, marginTop:20 }} />
+          style={{ height: 400, width: 400, marginTop:20 }} />
         <Text style={{fontSize:20, marginTop:10}}>{text}</Text>
 
         {scanned && <Button title={'Volver a escanear'} style={{fontSize:20, marginTop:10}}  onPress={() => setScanned(false)} /> }

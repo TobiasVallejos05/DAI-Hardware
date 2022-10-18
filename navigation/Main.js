@@ -9,6 +9,7 @@ import Weather from '../components/Weather';
 import EmergencyCall from '../components/EmergencyCall'
 import BackgroundImageChanger from '../screens/BackgroundImageChanger';
 import FavouriteVideo from '../screens/FavouriteVideo';
+import About from '../screens/About'
 import Identifier from '../screens/Identifier';
 
 const Stack = createNativeStackNavigator();
@@ -51,7 +52,11 @@ const Main = () => {
         <Stack.Screen
           name="FavouriteVideo"
           component={FavouriteVideo}
-        /> 
+        />
+        <Stack.Screen
+          name="About"
+          component={About}
+        />
         <Stack.Screen
           name="Identifier"
           component={Identifier}
