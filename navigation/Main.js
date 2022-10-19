@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from '../screens/Home';
 import EmergencyNumberConfiguration from '../screens/EmergencyNumberConfiguration'
-import Contacts from '../screens/Contacts';
+import ContactsList from '../screens/ContactsList';
 import CurrentTimeTemperature from '../screens/CurrentTimeTemperature';
 import Weather from '../components/Weather';
 import EmergencyCall from '../components/EmergencyCall'
@@ -30,8 +30,8 @@ const Main = () => {
           component={EmergencyNumberConfiguration}
         /> 
         <Stack.Screen
-          name="Contacts"
-          component={Contacts}
+          name="ContactsList"
+          component={ContactsList}
         /> 
         <Stack.Screen
           name="CurrentTimeTemperature"

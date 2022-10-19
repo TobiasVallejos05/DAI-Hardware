@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
-import EmergencyCall from '../components/EmergencyCall';
 import { useContextState } from '../contextState'
+import * as Contacts from 'expo-contacts';
 
-const Contacts = ({navigation}) => {
+const ContactsList = ({navigation}) => {
     
     const {contextState, setContextState} = useContextState();
 
@@ -28,7 +28,7 @@ const Contacts = ({navigation}) => {
 
   return (
     <View>
-        <EmergencyCall />
+        
     </View>
 
   )
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Contacts
+export default ContactsList

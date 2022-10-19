@@ -5,7 +5,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 
 const Identifier = ({navigation}) => {
   
-  const [permission, setPermission] = useState(true);
+  const [permission, setPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Todavía no hay nada escaneado');
 
