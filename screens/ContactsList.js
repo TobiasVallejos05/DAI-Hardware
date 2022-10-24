@@ -4,47 +4,62 @@ import { useContextState } from '../contextState'
 import * as Contacts from 'expo-contacts';
 
 const ContactsList = ({navigation}) => {
-    
-    const {contextState, setContextState} = useContextState();
 
-    /* const renderItem ({ item }) => {
-        
-    }
+    const [contactos, setContactos] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+          const { status } = await Contacts.requestPermissionsAsync();
+          if (status === 'granted') {
+            const { data } = await Contacts.getContactsAsync({
+              fields: [Contacts.Fields.Emails],
+            });
+            setContactos(data)
+          }
+        })();
+      }, []);
+      
+      const renderItem = ({ item }) => {
+        console.log(item.contactType)
+        return <TouchableOpacity style={styles.item} 
+          >
+           {item.firstName  && <View>
+          <Text style={styles.title}>{item.firstName}</Text>
+          <Text style={styles.title}>{item.lastName}</Text>
+          <Text style={styles.title}>{item.phoneNumbers}</Text>
+           </View>}
+        </TouchableOpacity>
+       
+      };
+
+    if (contactos.length === 0) return <View><Text>Cargando...</Text></View>
 
     return (
+    <View >
 
-    <View style={styles.container}>
-        <Text style={styles.title}>Contactos</Text>
-            <FlatList
-                data={ contextState.contacts }
-                keyExtractor={(item) => item.phoneNumber}
-                renderItem={renderItem}
-            />
-            <Text>{contextState.contacts.name} </Text>
-            <Text>{contextState.contacts.surname} </Text>
-            <Text>{contextState.contacts.phoneNumber} </Text>
-    </View> 
-  ); */
-
-  return (
-    <View>
-        
+        <FlatList
+        data={contactos}
+        renderItem={renderItem}
+        keyExtractor={(data) => data.id}
+      />
     </View>
+        
+    );}
+   
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        marginTop: StatusBar.currentHeight || 0,
+      },
+      item: {
 
-  )
-}
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "lightgray",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    title: {
-        fontSize: 40,
-        fontWeight: 500,
-        marginTop: 20
-    },
-});
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+      },
+      title: {
+        fontSize: 15,
+      }
+    });
 
 export default ContactsList
