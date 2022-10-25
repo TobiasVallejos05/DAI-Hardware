@@ -19,7 +19,7 @@ const Home = ({navigation}) => {
             <Text style={styles.featureTitle}>Configuración de número de emergencia</Text>
         
             <TouchableOpacity onPress = {() => {
-            navigation.navigate('Contacts')}}>
+            navigation.navigate('ContactsList')}}>
                 <Image
                 style={styles.logo}
                 source={{ uri: "https://cdn-icons-png.flaticon.com/512/1915/1915648.png" }}

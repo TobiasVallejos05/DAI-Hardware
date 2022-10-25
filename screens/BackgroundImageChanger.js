@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
-import { useContextState } from '../contextState'
 import ImagePicker, { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { getData, storeData } from 'helpers/localStorage.js';
 
 const BackgroundImageChanger = ({navigation}) => {
   

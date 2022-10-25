@@ -17,7 +17,7 @@ const ContactsList = ({navigation}) => {
             setContactos(data)
           }
         })();
-      }, []);
+      },[]);
       
       const renderItem = ({ item }) => {
         console.log(item.contactType)
