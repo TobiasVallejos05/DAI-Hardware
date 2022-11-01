@@ -19,7 +19,7 @@ const ContactsList = ({navigation}) => {
         })();
       },[]);
       
-      const renderItem = ({ item }) => {
+      /* const renderItem = ({ item }) => {
         console.log(item.contactType)
         return <TouchableOpacity style={styles.item} 
           >
@@ -30,7 +30,7 @@ const ContactsList = ({navigation}) => {
            </View>}
         </TouchableOpacity>
        
-      };
+      }; */
 
     if (contactos.length === 0) return <View><Text>Cargando...</Text></View>
 

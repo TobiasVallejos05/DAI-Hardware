@@ -14,4 +14,4 @@ export const getData = async (key) => {
 	} catch (error) {
 		console.log(error);
 	}
-};
+}; 

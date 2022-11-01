@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button, ScrollView } from 'react-native';
 import { useContextState } from '../contextState'
+import favicon from '../assets/favicon.png'
+import EmergencyNumberConfiguration from './EmergencyNumberConfiguration';
 
 const Home = ({navigation}) => {
 
@@ -13,7 +15,7 @@ const Home = ({navigation}) => {
                 navigation.navigate('EmergencyNumberConfiguration')}}>
                 <Image
                 style={styles.logo}
-                source={{ uri: "https://images.vexels.com/media/users/3/208199/isolated/preview/6eb5ef1c35080a1a35508c20b1ddee32-icono-de-llamada-de-telefono-de-emergencia.png" }}
+                source={favicon}
                 />
             </TouchableOpacity>
             <Text style={styles.featureTitle}>Configuración de número de emergencia</Text>
@@ -22,7 +24,7 @@ const Home = ({navigation}) => {
             navigation.navigate('ContactsList')}}>
                 <Image
                 style={styles.logo}
-                source={{ uri: "https://cdn-icons-png.flaticon.com/512/1915/1915648.png" }}
+                source={favicon}
                 />
             </TouchableOpacity>
             <Text style={styles.featureTitle}>Contactos</Text>
@@ -31,7 +33,7 @@ const Home = ({navigation}) => {
         navigation.navigate('CurrentTimeTemperature')}}>
         <Image
         style={styles.logo}
-        source={{ uri: "https://cdn-icons-png.flaticon.com/512/2784/2784399.png" }}
+        source={favicon}
         />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Hora actual/Temperatura</Text>
@@ -40,8 +42,7 @@ const Home = ({navigation}) => {
         navigation.navigate('BackgroundImageChanger')}}>
         <Image
         style={styles.logo}
-        source={{ uri: "https://lastfm.freetls.fastly.net/i/u/ar0/2bf2a1d2dbeb48f6c827e8a3d8601044.jpg" }}
-        />
+        source={favicon}        />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Cambio de imagen de fondo</Text>
         
@@ -49,8 +50,7 @@ const Home = ({navigation}) => {
         navigation.navigate('FavouriteVideo')}}>
         <Image
         style={styles.logo}
-        source={{ uri: "https://lastfm.freetls.fastly.net/i/u/ar0/2bf2a1d2dbeb48f6c827e8a3d8601044.jpg" }}
-        />
+        source={favicon}        />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Video favorito</Text>
         
@@ -58,8 +58,7 @@ const Home = ({navigation}) => {
         navigation.navigate('About')}}>
         <Image
         style={styles.logo}
-        source={{ uri: "https://lastfm.freetls.fastly.net/i/u/ar0/2bf2a1d2dbeb48f6c827e8a3d8601044.jpg" }}
-        />
+        source={favicon}        />
         </TouchableOpacity>
         <Text style={styles.featureTitle}>Identificación de cada aplicación</Text>
         
