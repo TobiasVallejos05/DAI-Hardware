@@ -4,8 +4,8 @@ import {useContext} from "react";
 export const initialState = {
     loading:true,
     contacts:{
-        name:'Nombre',
-        surname:'Apellido',
+        name:'',
+        surname:'',
         phoneNumber:0,
         defaultEmergencyNumber:''
     },
