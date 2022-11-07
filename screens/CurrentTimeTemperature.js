@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
-import { useContextState } from '../contextState'
-import Weather from '../components/Weather';
+import {Text, SafeAreaView, StyleSheet } from 'react-native';
+import axios from "axios";
+import * as Location from "expo-location"
 
-const CurrentTimeTemperature = ({navigation}) => {
+const API_KEY="571d5ef2a6a5fead5c66d586ca297029";
+const url="https://api.openweathermap.org/data/2.5/onecall";
 
+const CurrentTimeTemperature = () => {
+  
   let datetime = new Date();
 
   let minutes = datetime.getMinutes();
@@ -82,35 +85,51 @@ const CurrentTimeTemperature = ({navigation}) => {
   let date = `${dayName}, ${day} de ${monthName} de ${year}`;
   console.log(time);
   console.log(date);
- 
-  return (
 
-    <SafeAreaView style={styles.container}>
+  const [weather, setWeather] = useState();
+  
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          return;
+        }
+  
+        const data = await Location.getCurrentPositionAsync({});
+        console.log(data.coords.latitude)
+        console.log(data.coords.longitude)
+        const response = await axios.get(`${url}?lat=${data.coords.latitude}&lon=${data.coords.longitude}&appid=${API_KEY}&units=metric`)
+        setWeather(response.data);
+      })();
+    }, []);
+  
+    return (
+      <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Hora Actual/Temperatura</Text>
-        <View style={styles.container}>
-          <Text style={styles.body}>{ time }</Text>
-          <Text style={styles.body}>{ date }</Text>
-          <Weather />
-        </View>
-    </SafeAreaView> 
-  ); 
-}
-
-const styles = StyleSheet.create({
+        <Text style={styles.body}>{ time }</Text>
+        <Text style={styles.body}>{ date }</Text>
+        <Text style={styles.body}>Latitud: {weather?.lat}</Text>
+        <Text style={styles.body}>Longitud: {weather?.lon}</Text>
+        <Text style={styles.body}>Temperatura: {weather?.current.temp}</Text>
+      </SafeAreaView>
+    );
+  };
+  
+  const styles = StyleSheet.create({
     container: {
-        backgroundColor: "lightgray",
-        justifyContent: "center",
-        alignItems: "center"
+      backgroundColor: "lightgray",
+      justifyContent: "center",
+      alignItems: "center"
     },
     title: {
-        fontSize: 40,
-        fontWeight: "500",
-        marginTop: 20
+      fontSize: 40,
+      fontWeight: "500",
+      marginTop: 20
     },
     body: {
-        fontSize: 20,
-        fontWeight: "300",
-        marginVertical: 10,
+      fontSize: 20,
+      fontWeight: "300",
+      marginVertical: 10,
     }
 });
 

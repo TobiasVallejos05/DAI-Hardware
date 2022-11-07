@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
-import { useContextState } from '../contextState'
-import { BarCodeScanner } from 'expo-barcode-scanner'
+import React from 'react';
+import { View, Text, Image, Button, StyleSheet } from 'react-native';
 
 const About = ({navigation}) => {
 
   return (
 
     <View style={styles.container}>
-        <Text style={styles.title}>About us</Text>
-        <Image style={{height:300, width:300}}  />
-        <Text style={{fontSize:20, marginTop:10, marginBottom:20}}>Hola</Text>
+        <Text style={styles.title}>Sobre nosotros</Text>
+        <Image source={require('../assets/qrcode.png')} style={styles.qrcode} />
         <Button title={'Cámara'} style={{fontSize:20, marginTop:20}} onPress = {() => {navigation.navigate('Identifier')}}/>
     </View>
   ); 
@@ -26,6 +23,13 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: "400",
         marginTop: 20
+    },
+    qrcode: {
+      alignItems: "center",
+      justifyContent: "center",
+      height: 300,
+      width: 300,
+      marginVertical: 20
     },
 });
 

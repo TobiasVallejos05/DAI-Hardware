@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Image, FlatList, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar, Button } from 'react-native';
-import { useContextState } from '../contextState'
+import { View, Text, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import * as Contacts from 'expo-contacts';
 import Contact from '../components/Contact'
 
-const ContactsList = ({navigation}) => {
+const ContactsList = () => {
 
     const [contactos, setContactos] = useState([]);
 
@@ -22,7 +21,7 @@ const ContactsList = ({navigation}) => {
         })();
       },[]);
 
-    if (contactos.length === 0) return <View><Text>Cargando...</Text></View>
+    if (contactos.length === 0) return <View><Text style={styles.loading}>Cargando...</Text></View>
 
     return (
       <SafeAreaView>
@@ -30,25 +29,20 @@ const ContactsList = ({navigation}) => {
               data={contactos}
               renderItem={(data) => <Contact {...data.item} />}
               keyExtractor={item => item.id.toString()}
+              style={styles.list}
           />
       </SafeAreaView>
     );
    }
-   
-   /* const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        marginTop: StatusBar.currentHeight || 0,
-      },
-      item: {
 
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-      },
-      title: {
-        fontSize: 15,
-      }
-    }); */
+   const styles = StyleSheet.create({
+    loading: {
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    list: {
+      marginTop: 10
+    },
+    });
 
 export default ContactsList

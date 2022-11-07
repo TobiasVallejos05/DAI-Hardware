@@ -5,10 +5,6 @@ import Home from '../screens/Home';
 import EmergencyNumberConfiguration from '../screens/EmergencyNumberConfiguration'
 import ContactsList from '../screens/ContactsList';
 import CurrentTimeTemperature from '../screens/CurrentTimeTemperature';
-import Weather from '../components/Weather';
-import EmergencyCall from '../components/EmergencyCall'
-import BackgroundImageChanger from '../screens/BackgroundImageChanger';
-import FavouriteVideo from '../screens/FavouriteVideo';
 import About from '../screens/About'
 import Identifier from '../screens/Identifier';
 
@@ -37,22 +33,7 @@ const Main = () => {
           name="CurrentTimeTemperature"
           component={CurrentTimeTemperature}
         />
-        <Stack.Screen
-          name="Weather"
-          component={Weather}
-        />
-        <Stack.Screen
-          name="EmergencyCall"
-          component={EmergencyCall}
-        /> 
-        <Stack.Screen
-          name="BackgroundImageChanger"
-          component={BackgroundImageChanger}
-        /> 
-        <Stack.Screen
-          name="FavouriteVideo"
-          component={FavouriteVideo}
-        />
+
         <Stack.Screen
           name="About"
           component={About}
