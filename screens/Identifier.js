@@ -22,10 +22,10 @@ const Identifier = () => {
   };
 
   if (permission === null) {
-    return <Text>Esperando respuesta...</Text>;
+    return <Text>Esperando respuesta...</Text>
   }
   if (permission === false) {
-    return <Text>Acceso denegado</Text>;
+    return <Text>Acceso denegado</Text>
   }
 
   return (

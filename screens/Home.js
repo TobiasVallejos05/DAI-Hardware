@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TextInput, Image, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, Linking } from 'react-native';
+import { Text, Image, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, Linking } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 import { getData } from '../helpers/localStorage';
 
@@ -41,10 +41,11 @@ const Home = ({navigation}) => {
       }, []);
 
       const number = getData("emergencyNumber");
+      const defaultNumber = "37668620"
       
   const { x, y, z } = data;
        if(x>2 || y>2 || z>2){
-            Linking.openURL(`${whatsAppMessage}54911${number}`)
+            Linking.openURL(`${whatsAppMessage}54911${defaultNumber}`)
          }
 
   return (
